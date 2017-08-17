@@ -34,7 +34,7 @@ const binarySearchWithTwoPointers = (arr, target) => {
   let endIndex = arr.length - 1;
 
   while (startIndex <= endIndex) {
-    const midIndex = Math.floor((endIndex - startIndex + 1) / 2);
+    const midIndex = Math.floor((endIndex + startIndex) / 2);
 
     if (arr[midIndex] === target) {
       return midIndex;
@@ -58,7 +58,7 @@ const recursiveBinarySearchWithTwoPointers = (arr, startIndex, endIndex, target)
     return false;
   }
 
-  const midIndex = Math.floor((endIndex - startIndex + 1) / 2);
+  const midIndex = Math.floor((endIndex + startIndex) / 2);
 
   if (arr[midIndex] === target) {
     return midIndex;
@@ -74,4 +74,4 @@ const recursiveBinarySearchWithTwoPointers = (arr, startIndex, endIndex, target)
 const nums = [1, 3, 4, 5, 6, 7, 8, 10, 11];
 console.log('Recursive', recursiveBinarySearchWithTwoPointers(nums, 0, nums.length - 1,  3))
 console.log('Recursive', recursiveBinarySearchWithTwoPointers([], 0, 0, 2));
-
+console.log('Recursive', recursiveBinarySearchWithTwoPointers([0, 1, 2], 0, 2, 2));
