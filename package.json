@@ -1,0 +1,14 @@
+{
+  "name": "computer_science_fundamentals",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ken Hibino <ken.hibino7@gmail.com> (http://www.kenhibino.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "4.17.4"
+  }
+}

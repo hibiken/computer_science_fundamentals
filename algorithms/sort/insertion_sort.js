@@ -1,3 +1,5 @@
+// O(n^2) running time
+
 const insertionSort = (nums) => {
   for (let j = 1; j < nums.length; j++) {
     let key = nums[j];
