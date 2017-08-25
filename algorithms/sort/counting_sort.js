@@ -18,18 +18,21 @@ const countingSort = (nums) => {
     numCount[indexFor(nums[i])] += 1;
   }
 
-  // O(k)
-  for (let j = 1; j < numCount.length; j++) {
-    numCount[j] = numCount[j-1] + numCount[j];
+  const less = new Array(numCount.length);
+  less[0] = 0;
+
+  for (let j = 1; j < less.length; j++) {
+    less[j] = less[j-1] + numCount[j-1];
   }
+
   // O(N) time & space
   const result = new Array(nums.length);
 
   // O(N)
   for (let i = 0; i < nums.length; i++) {
     const num = nums[i];
-    const index = numCount[indexFor(num)] - 1;
-    numCount[indexFor(num)] -= 1;
+    const index = less[indexFor(num)];
+    less[indexFor(num)] += 1;
     result[index] = num;
   }
 
@@ -46,6 +49,7 @@ const countingSort = (nums) => {
  */
 
 
+const simple = [4, 2, 2, 1, 5, 0, 6, 3, 9];
 const numbers = [61, 74, 51, 59];
 const smallSample = [1, -4, 2, 3, 5, -2];
 console.log(countingSort(smallSample));
