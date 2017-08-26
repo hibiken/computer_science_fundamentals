@@ -55,6 +55,25 @@ class Node {
     }
   }
 
+  printInPreOrder() {
+    console.log(this.key);
+    if (this.left) {
+      this.left.printInPreOrder();
+    }
+    if (this.right) {
+      this.right.printInPreOrder();
+    }
+  }
+
+  printInPostOrder() {
+    if (this.left) {
+      this.left.printInPostOrder();
+    }
+    if (this.right) {
+      this.right.printInPostOrder();
+    }
+    console.log(this.key);
+  }
 };
 
 
@@ -76,6 +95,6 @@ root.insert(9);
 // console.log('has 20?', root.contains(20));
 // console.log('has 21?', root.contains(21));
 console.log('sort print!');
-console.log(root.printInOrder());
+console.log(root.printInPostOrder());
 
 
