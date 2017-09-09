@@ -2,9 +2,7 @@
  * @param {Map} graph - adjacency lists representing a graph
  * @param {Node} startNode - a node in the graph
  */
-
 const dfsVisit = (graph, startNode, parents) => {
-  parents.set(startNode, null);
   console.log(startNode);
   const adjacentNodes = graph.get(startNode);
 
@@ -16,16 +14,32 @@ const dfsVisit = (graph, startNode, parents) => {
   });
 };
 
+const dfsVisitIterative = (adjLists, source, parents) => {
+  const stack = [ source ];
+
+  while (stack.length > 0) {
+    const node = stack.pop();
+    console.log(node);
+    const adjNodes = adjLists.get(node);
+    adjNodes.forEach((u) => {
+      if (!parents.has(u)) {
+        parents.set(u, node);
+        stack.push(u);
+      }
+    });
+  }
+};
+
 /**
  * @param {Set | Array} vertices - a set of all vertices.
  * @param {Map} graph - adjacency lists reporesenting a graph
  */
-
 const dfs = (vertices, graph) => {
   const parents = new Map();
 
   vertices.forEach((v) => {
     if (!parents.has(v)) {
+      parents.set(v, null);
       dfsVisit(graph, v, parents);
     }
   });
