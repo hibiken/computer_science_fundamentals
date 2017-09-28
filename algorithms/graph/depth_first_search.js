@@ -30,6 +30,24 @@ const dfsVisitIterative = (adjLists, source, parents) => {
   }
 };
 
+const bfsVisit = (adjLists, source) => {
+  const visited = new Set();
+  const queue = [];
+  queue.push(source);
+
+  while (queue.length > 0) {
+    const node = queue.shift();
+    console.log(node);
+    const adjNodes = adjLists.get(node);
+    adjNodes.forEach((u) => {
+      if (!visited.has(u)) {
+        visited.add(u);
+        queue.push(u);
+      }
+    });
+  }
+};
+
 /**
  * @param {Set | Array} vertices - a set of all vertices.
  * @param {Map} graph - adjacency lists reporesenting a graph
@@ -56,4 +74,5 @@ Adj.set('e', ['d', 'g']);
 Adj.set('f', ['f']);
 Adj.set('g', []);
 
-dfs(['a', 'b', 'c', 'd', 'e', 'f', 'g'], Adj);
+// dfs(['a', 'b', 'c', 'd', 'e', 'f', 'g'], Adj);
+bfsVisit(Adj, 'a');

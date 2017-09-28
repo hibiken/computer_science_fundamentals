@@ -1,3 +1,6 @@
+// h : Height of BST
+// N : Number of nodes in BST
+
 class Node {
   constructor(key) {
     this.key = key;
@@ -6,6 +9,7 @@ class Node {
     this.right = null;
   }
 
+  // O(h) time;
   insert(key) {
     if (key < this.key) {
       // Go left
@@ -28,6 +32,7 @@ class Node {
     }
   }
 
+  // O(h) time;
   contains(key) {
     if (key === this.key) {
       return true;
@@ -45,6 +50,39 @@ class Node {
     }
   }
 
+  min() {
+    if (this.left === null) {
+      return this.key;
+    } else {
+      return this.left.min();
+    }
+  }
+
+  max() {
+    if (this.right === null) {
+      return this.key;
+    } else {
+      return this.right.max();
+    }
+  }
+
+  successor() {
+    if (this.right) {
+      return this.right.min();
+    } else {
+      let parent = this.parent;
+      let currentNode = this;
+      while (parent !== null && currentNode === parent.right) {
+        currentNode = parent;
+        parent = currentNode.parent;
+      }
+      return parent !== null ? parent.key : null;
+    }
+  }
+
+  predecessor() {}
+
+  // O(N) time;
   printInOrder() {
     if (this.left) {
       this.left.printInOrder();
@@ -55,6 +93,7 @@ class Node {
     }
   }
 
+  // O(N) time;
   printInPreOrder() {
     console.log(this.key);
     if (this.left) {
@@ -65,6 +104,7 @@ class Node {
     }
   }
 
+  // O(N) time;
   printInPostOrder() {
     if (this.left) {
       this.left.printInPostOrder();
@@ -94,7 +134,10 @@ root.insert(9);
 // console.log('BST', root);
 // console.log('has 20?', root.contains(20));
 // console.log('has 21?', root.contains(21));
-console.log('sort print!');
-console.log(root.printInPostOrder());
+// console.log('sort print!');
+// console.log(root.printInPostOrder());
+console.log('min', root.min());
+console.log('max', root.max());
+console.log('successor of 15', root.successor());
 
 

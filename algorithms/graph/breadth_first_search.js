@@ -58,7 +58,7 @@ const breadthFirstSearch1 = (graph, startNode) => {
       let v = Adj.get(u.id);
       while (!!v) {
         if (!level.has(v.data.id)) {
-          level.set(v.data.id, i);
+          level.set(v.data.id, levelCount);
           parent.set(v.data.id, u);
           next.push(v.data);
         }
