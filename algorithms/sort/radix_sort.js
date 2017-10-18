@@ -49,6 +49,8 @@ const createDigitGetterFunc = (i) => {
 
 
 /* Test */
-const numbers = [821, 73453, 31345, 22, 10,  5000000, 1, 900, 8421, 290, 222828];
-console.log(radixSort(numbers, 7));
+// const numbers = [821, 73453, 31345, 22, 10,  5000000, 1, 900, 8421, 290, 222828];
+const numbers = [434, 209, 63, 32, 103, 834, 527];
+
+console.log(radixSort(numbers, 3));
 

@@ -1,7 +1,7 @@
 class MaxHeap {
-  constructor() {
-    this.heapSize = 0;
-    this.items = [];
+  constructor(nums = []) {
+    this.heapSize = nums.length;
+    this.buildMaxHeap(nums);
   }
 
   add(val) {
@@ -23,7 +23,24 @@ class MaxHeap {
     return this.items[0];
   }
 
+  buildMaxHeap(nums) {
+    this.items = nums;
+    for (let i = Math.floor(nums.length / 2); i >= 0; i--) {
+      this.heapifyDown(i);
+    }
+  }
+
+  // TODO:
   increaseKey(i, newKey) {}
+
+  // TODO:
+  heapSort() {
+    for (let i = this.items.length - 1; i > 0; i--) {
+
+    }
+
+    console.log('Sorted', this.items);
+  }
 
   heapifyUp(i) {
     let index = i;
@@ -36,7 +53,7 @@ class MaxHeap {
   heapifyDown(i) {
     let index = i;
     let smallerChildIndex = index;
-    while (true) {
+    while (this.hasLeftChild(index)) {
       if (this.hasLeftChild(index) && this.leftChild(index) > this.items[index]) {
         smallerChildIndex = this.leftChildIndex(index);
       }
@@ -101,17 +118,22 @@ class MaxHeap {
 }
 
 /* Test */
-const maxHeap = new MaxHeap();
-maxHeap.add(8);
-maxHeap.add(14);
-maxHeap.add(7);
-maxHeap.add(5);
-maxHeap.add(16);
-maxHeap.add(1);
-maxHeap.add(20);
-maxHeap._debug();
-console.log(maxHeap.peekMax()); // 20
-console.log(maxHeap.extractMax()); //20 
-maxHeap._debug();
-console.log(maxHeap.peekMax()); // 8
+const heap = new MaxHeap([2, 4, 1, 5, 4, 13, 55]);
+heap._debug();
+heap.add(33);
+heap._debug();
+heap.heapSort();
+// const maxHeap = new MaxHeap();
+// maxHeap.add(8);
+// maxHeap.add(14);
+// maxHeap.add(7);
+// maxHeap.add(5);
+// maxHeap.add(16);
+// maxHeap.add(1);
+// maxHeap.add(20);
+// maxHeap._debug();
+// console.log(maxHeap.peekMax()); // 20
+// console.log(maxHeap.extractMax()); //20 
+// maxHeap._debug();
+// console.log(maxHeap.peekMax()); // 8
 
