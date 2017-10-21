@@ -124,6 +124,38 @@ const getMaximum = (root) => {
   return currentNode;
 };
 
+const transplant = (root, node1, node2) => {
+  if (node1.parent === null) return node1;
+
+  if (node1 === node1.parent.left) {
+    node1.parent.left = node2;
+  } else {
+    node1.parent.right = node1;
+  }
+  if (node2 !== null) {
+    node2.parent = node1.parent;
+  }
+  return root;
+};
+
+const deleteNode = (root, node) => {
+  if (node.left === null) {
+    transplant(root, node, node.right);
+  } else if (node.right === null) {
+    transplate(root, node, node.left);
+  } else {
+    const successor = node.successor();
+    if (successor.parent !== node) {
+      transplant(root, successor, successor.right);
+      successor.right = node.right;
+      successor.right.parent = successor;
+    }
+    transplant(root, node, successor);
+    successor.left = node.left;
+    successor.left.parent = successor;
+  }
+};
+
 const root = new Node(7);
 
 [8, 10, 5, 3, 2, 4, 11, 12, 1].forEach(num => root.insert(num));
